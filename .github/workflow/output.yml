@@ -4,5 +4,5 @@ jobs:
   test:
     runs_on: ubuntu-latest
     steps:
-      - name: Access github environmnet variable
+      - name: Access github environment variable
         run: echo "${{toJson(github)}}"
