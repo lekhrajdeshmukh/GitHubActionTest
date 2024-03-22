@@ -1,0 +1,8 @@
+name: Display value of github environmnet variable
+on: workflow_dispatch
+jobs:
+  test:
+    runs_on: ubuntu-latest
+    steps:
+      - name: Access github environmnet variable
+        run: echo "${{toJson(github)}}"
