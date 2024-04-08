@@ -77,3 +77,16 @@
         - Example: Needs [<jobName1>,<JobName2>]
     - If you want your workflow to be triggered by automated action and also by manual trigger then you can below on events:
         - Example: on: [push, workflow_dispatch]
+
+**Caching dependencies across jobs and workflow**
+
+    - There could be possibilites that some of the steps can take more time and which is common across multiple jobs and in this case caching dependnices feature could be useful.
+    - Github provides official action for caching i.e.
+        - actions/cache@v3
+        - Example:
+            - name: Cahce Primes
+              id: cache-primes
+              uses: actions/cache@v3
+              with:
+                path: prime-numbers
+                key: ${{ runner.os }}-primes
