@@ -90,3 +90,29 @@
               with:
                 path: prime-numbers
                 key: ${{ runner.os }}-primes
+
+**Artifacts**
+
+    - Jobs often produces assets that should be shared or analyzed.
+    - Examples: Deployable website files, logs, binaries etc.
+    - These assets are referred as "Artifacts" (or Job Artifacts)
+    - GitHub Actions provides Actions for uploading and downloading
+
+**Outputs**
+
+    - Besides Artifacts, Steps can produce and share some values.
+    - These outputs are shared via ::set-output
+    - Jobs can pick up & share step outputs via the steps context
+    - Other Jobs can use Jobs output via the needs context
+
+**8*Caching**
+
+    - Caching can help speed up repeated, slow steps
+    - Typical use-case: Caching dependencies
+    - But any files and folders can be cached
+    - The cache Action automatically stores & updates cache values(based on the cache key)
+    - Note: Don't use caching for artifacts
+
+**Environment Variables and Secrets**
+
+    - 
