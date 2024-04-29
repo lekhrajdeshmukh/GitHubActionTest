@@ -4,6 +4,7 @@ env:
   MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME}}
 jobs:
   test:
+    environment: TEST
     env:
       MONGO_SERVER: ${{ secrets.MONGO_SERVER }}
       MONGO_USER: ${{ secrets.MONGO_USER }}
