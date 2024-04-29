@@ -1,7 +1,13 @@
 name: Deployment workflow
 on: [push, workflow_dispatch]
+env:
+  MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME}}
 jobs:
   test:
+    env:
+      MONGO_SERVER: ${{ secrets.MONGO_SERVER }}
+      MONGO_USER: ${{ secrets.MONGO_USER }}
+      MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -19,6 +25,10 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+      - name: print environment variables
+        run: |
+          echo "MONGO_DB_NAME: ${{ env.MONGO_DB_NAME}}"
+          echo "MONGO_USER_NAME: ${{ env.MONGO_USER }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
