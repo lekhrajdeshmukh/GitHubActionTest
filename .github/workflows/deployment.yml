@@ -1,10 +1,18 @@
 name: Deployment workflow
-on: [push, workflow_dispatch]
+on: 
+  push:
+  workflow_dispatch: 
+    inputs:
+      environment_type:
+        description: "It contains in which environment we are running the test"
+        required: false
+        default: TEST
+
 env:
   MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME}}
 jobs:
   test:
-    environment: TEST
+    environment: ${{ github.event.inputs.environment_type }}
     env:
       MONGO_SERVER: ${{ secrets.MONGO_SERVER }}
       MONGO_USER: ${{ secrets.MONGO_USER }}
@@ -30,6 +38,7 @@ jobs:
         run: |
           echo "MONGO_DB_NAME: ${{ env.MONGO_DB_NAME}}"
           echo "MONGO_USER_NAME: ${{ env.MONGO_USER }}"
+          echo "Environment is: ${{ github.event.inputs.environment_type }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
