@@ -6,7 +6,7 @@ on:
       environment_type:
         description: "It contains in which environment we are running the test"
         required: false
-        default: TEST
+        default: TEST1
 
 env:
   MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME}}
