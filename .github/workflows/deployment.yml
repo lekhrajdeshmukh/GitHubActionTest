@@ -39,7 +39,6 @@ jobs:
           echo "MONGO_DB_NAME: ${{ env.MONGO_DB_NAME}}"
           echo "MONGO_USER_NAME: ${{ env.MONGO_USER }}"
           echo "Environment is: ${{ github.event.inputs.environment_type }}"
-          echo "environment: ${{ secrets.${{ github.event.inputs.environment_type }}_SECRET }}""
   deploy:
     needs: test
     runs-on: ubuntu-latest
